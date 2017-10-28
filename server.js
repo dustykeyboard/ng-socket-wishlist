@@ -12,24 +12,16 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', socket => {
-  console.log(`connected (${socket.id})`);
-
-  clients[socket.id] = {
-    socket
-  };
-
-  console.log('connections', Object.keys(clients).length);
+  clients[socket.id] = { socket };
   io.sockets.emit('connections', Object.keys(clients).length);
 
   socket.on('disconnect', () => {
-    console.log(`disconnected (${socket.id})`);
-    console.log('connections', Object.keys(clients).length);
     delete clients[socket.id];
+    io.sockets.emit('connections', Object.keys(clients).length);
   });
 });
 
 exports.listen = function() {
-  console.log('starting server', arguments);
   this.http.listen.apply(this.http, arguments);
 };
 
