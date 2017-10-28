@@ -10,7 +10,7 @@
   <script src='js/app.bundle.js'></script>
 </head>
 
-<body ng-controller='AppCtrl'>
+<body ng-controller='AppController'>
   <header>
     <h1>{{appName}}</h1>
     <p>{{connections}} connections</p>
@@ -22,14 +22,7 @@
         <li ng-repeat='message in history[channel].messages'>{{message.name}}: {{message.message}}</li>
       </ul>
     </article>
-    <aside>
-      <h2>Users</h2>
-      <ul class='list'>
-        <li ng-click='setChannel("ALL")' ng-class='{active: channel == "ALL", unread: history["ALL"].unread}'>ALL</li>
-        <li ng-repeat='user in users' ng-hide='user.name === name' ng-click='setChannel(user.id, user.name)' ng-class='{active: channel == user.id, unread: history[user.id] && history[user.id].unread}'>
-          <img ng-src='{{user.gravatar}}' />{{user.name}}</li>
-      </ul>
-    </aside>
+    <lists-component></lists-component>
   </section>
   <form ng-submit='sendMessage()'>
     <div ng-click='changeName()' title='Click to change'>{{name}}</div>

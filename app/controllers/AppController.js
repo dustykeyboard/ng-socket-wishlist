@@ -1,7 +1,7 @@
 'use strict';
 
-AppCtrl.$inject = ['SocketService'];
-function AppCtrl($scope, SocketService) {
+AppController.$inject = ['SocketService'];
+function AppController($scope, SocketService) {
   $scope.appName = 'GiftsApp';
   $scope.connections = 0;
 
@@ -11,4 +11,4 @@ function AppCtrl($scope, SocketService) {
   });
 }
 
-module.exports = AppCtrl;
+module.exports = AppController;
