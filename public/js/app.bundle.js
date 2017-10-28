@@ -11,8 +11,8 @@ webpackJsonp([0],{
 var angular = __webpack_require__(4);
 angular.module('giftsApp', []);
 
-__webpack_require__(26);
 __webpack_require__(24);
+__webpack_require__(49);
 
 
 /***/ }),
@@ -25,49 +25,12 @@ __webpack_require__(24);
 
 var angular = __webpack_require__(4);
 
-angular
-  .module('giftsApp')
-  .controller('AppCtrl', ['$scope', 'SocketService', __webpack_require__(25)]);
+angular.module('giftsApp').factory('SocketService', __webpack_require__(25));
 
 
 /***/ }),
 
 /***/ 25:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-AppCtrl.$inject = ['SocketService'];
-function AppCtrl($scope, SocketService) {
-  $scope.appName = 'GiftsApp';
-  $scope.connections = 0;
-
-  SocketService.on('connections', connections => {
-    console.log('connections', connections);
-    $scope.connections = connections;
-  });
-}
-
-module.exports = AppCtrl;
-
-
-/***/ }),
-
-/***/ 26:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var angular = __webpack_require__(4);
-
-angular.module('giftsApp').factory('SocketService', __webpack_require__(27));
-
-
-/***/ }),
-
-/***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101,6 +64,43 @@ function SocketService($rootScope) {
 }
 
 module.exports = SocketService;
+
+
+/***/ }),
+
+/***/ 49:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(4);
+
+angular
+  .module('giftsApp')
+  .controller('AppCtrl', ['$scope', 'SocketService', __webpack_require__(50)]);
+
+
+/***/ }),
+
+/***/ 50:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+AppCtrl.$inject = ['SocketService'];
+function AppCtrl($scope, SocketService) {
+  $scope.appName = 'GiftsApp';
+  $scope.connections = 0;
+
+  SocketService.on('connections', connections => {
+    console.log('connections', connections);
+    $scope.connections = connections;
+  });
+}
+
+module.exports = AppCtrl;
 
 
 /***/ })
