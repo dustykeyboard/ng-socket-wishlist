@@ -6,8 +6,9 @@
   "author": "Philip Boardman <dustykeyboard@brd.mn>",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js",
-    "test": "./node_modules/mocha/bin/mocha -R spec"
+    "start": "node index.js",
+    "test": "mocha -R spec --exit",
+    "bundle": "webpack"
   },
   "dependencies": {
     "express": "^4.16.2",
