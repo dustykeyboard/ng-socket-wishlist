@@ -4,6 +4,7 @@ this.http = require('http').Server(app);
 var io = require('socket.io')(this.http);
 
 var clients = {};
+var lists = [];
 
 app.use(express.static('public'));
 
@@ -15,9 +16,19 @@ io.on('connection', socket => {
   clients[socket.id] = { socket };
   io.sockets.emit('connections', Object.keys(clients).length);
 
+  socket.emit('lists', lists);
+
   socket.on('disconnect', () => {
     delete clients[socket.id];
     io.sockets.emit('connections', Object.keys(clients).length);
+  });
+
+  socket.on('createList', ({ name }) => {
+    lists.push({
+      name,
+      items: []
+    });
+    io.sockets.emit('lists', lists);
   });
 });
 
