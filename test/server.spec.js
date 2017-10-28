@@ -30,6 +30,7 @@ describe('Chat Server', function() {
       client2.on('connect', () => {
         client2.on('connections', function(connections) {
           connections.should.equal(2);
+          client1.disconnect();
           client2.disconnect();
           done();
         });
