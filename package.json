@@ -6,7 +6,7 @@
   "author": "Philip Boardman <dustykeyboard@brd.mn>",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "test": "mocha -R spec",
     "bundle": "webpack"
   },

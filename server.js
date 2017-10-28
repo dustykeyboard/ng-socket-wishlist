@@ -1,8 +1,7 @@
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var port = process.env.PORT || 3000;
+this.http = require('http').Server(app);
+var io = require('socket.io')(this.http);
 
 var clients = {};
 
@@ -29,6 +28,11 @@ io.on('connection', socket => {
   });
 });
 
-http.listen(port, function() {
-  console.log('listening on *:' + port);
-});
+exports.listen = function() {
+  console.log('starting server', arguments);
+  this.http.listen.apply(this.http, arguments);
+};
+
+exports.close = function(callback) {
+  this.http.close(callback);
+};
