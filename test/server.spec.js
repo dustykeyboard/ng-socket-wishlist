@@ -1,4 +1,4 @@
-var should = require('should');
+require('should');
 var io = require('socket.io-client');
 
 var server = require('../server');
