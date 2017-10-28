@@ -23,9 +23,8 @@ io.on('connection', socket => {
     io.sockets.emit('connections', Object.keys(clients).length);
   });
 
-  socket.on('createList', list => {
-    console.log('createList', list);
-    var { name } = list;
+  socket.on('createList', ({ name }) => {
+    console.log('createList', name);
     lists.push({
       name,
       items: []
