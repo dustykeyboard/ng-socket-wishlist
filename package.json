@@ -1,0 +1,15 @@
+{
+  "name": "gifts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:dustykeyboard/ng-socket-wishlist.git",
+  "author": "Philip Boardman <dustykeyboard@brd.mn>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  }
+}
