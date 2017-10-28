@@ -1,6 +1,8 @@
 'use strict';
 
-chatApp.factory('socket', function($rootScope) {
+var io = require('socket.io-client');
+
+function SocketService($rootScope) {
   var socket = io.connect();
   return {
     id: () => socket.id,
@@ -23,4 +25,6 @@ chatApp.factory('socket', function($rootScope) {
       });
     }
   };
-});
+}
+
+module.exports = SocketService;

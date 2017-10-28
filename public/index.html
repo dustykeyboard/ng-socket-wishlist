@@ -1,24 +1,41 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang='en-au' ng-app='giftsApp'>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
   <title>Gifts</title>
-  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js'></script>
-  <script src='/socket.io/socket.io.js'></script>
-  <script src=”js/vendor.bundle.js”></script>
-  <script src=”js/app.bundle.js”></script>
+  <script src='js/vendor.bundle.js'></script>
+  <script src='js/app.bundle.js'></script>
 </head>
 
-<body>
+<body ng-controller='AppCtrl'>
   <header>
-    <h1>Gifts</h1>
+    <h1>{{appName}}</h1>
+    <p>{{connections}} connections</p>
   </header>
-  <aside>
-    <h2>Lists</h2>
-  </aside>
-  <article></article>
+  <section>
+    <article>
+      <h2>Send to {{getChannelName(channel)}}</h2>
+      <ul class='list' scroll-bottom="history[channel].messages">
+        <li ng-repeat='message in history[channel].messages'>{{message.name}}: {{message.message}}</li>
+      </ul>
+    </article>
+    <aside>
+      <h2>Users</h2>
+      <ul class='list'>
+        <li ng-click='setChannel("ALL")' ng-class='{active: channel == "ALL", unread: history["ALL"].unread}'>ALL</li>
+        <li ng-repeat='user in users' ng-hide='user.name === name' ng-click='setChannel(user.id, user.name)' ng-class='{active: channel == user.id, unread: history[user.id] && history[user.id].unread}'>
+          <img ng-src='{{user.gravatar}}' />{{user.name}}</li>
+      </ul>
+    </aside>
+  </section>
+  <form ng-submit='sendMessage()'>
+    <div ng-click='changeName()' title='Click to change'>{{name}}</div>
+    <input autocomplete='off' ng-model=message ng-keypress='onKeyPress()' />
+    <button>Send</button>
+  </form>
 </body>
 
 </html>
