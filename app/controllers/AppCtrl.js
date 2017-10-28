@@ -1,11 +1,11 @@
 'use strict';
 
 AppCtrl.$inject = ['SocketService'];
-function AppCtrl($scope) {
+function AppCtrl($scope, SocketService) {
   $scope.appName = 'GiftsApp';
   $scope.connections = 0;
 
-  $scope.on('connections', connections => {
+  SocketService.on('connections', connections => {
     console.log('connections', connections);
     $scope.connections = connections;
   });

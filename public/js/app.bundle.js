@@ -11,8 +11,8 @@ webpackJsonp([0],{
 var angular = __webpack_require__(4);
 angular.module('giftsApp', []);
 
-__webpack_require__(24);
 __webpack_require__(26);
+__webpack_require__(24);
 
 
 /***/ }),
@@ -25,7 +25,9 @@ __webpack_require__(26);
 
 var angular = __webpack_require__(4);
 
-angular.module('giftsApp').controller('AppCtrl', __webpack_require__(25));
+angular
+  .module('giftsApp')
+  .controller('AppCtrl', ['$scope', 'SocketService', __webpack_require__(25)]);
 
 
 /***/ }),
@@ -37,11 +39,11 @@ angular.module('giftsApp').controller('AppCtrl', __webpack_require__(25));
 
 
 AppCtrl.$inject = ['SocketService'];
-function AppCtrl($scope) {
+function AppCtrl($scope, SocketService) {
   $scope.appName = 'GiftsApp';
   $scope.connections = 0;
 
-  $scope.on('connections', connections => {
+  SocketService.on('connections', connections => {
     console.log('connections', connections);
     $scope.connections = connections;
   });
@@ -60,7 +62,7 @@ module.exports = AppCtrl;
 
 var angular = __webpack_require__(4);
 
-angular.module('giftsApp').service('SocketService', __webpack_require__(27));
+angular.module('giftsApp').factory('SocketService', __webpack_require__(27));
 
 
 /***/ }),

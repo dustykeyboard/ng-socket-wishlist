@@ -2,4 +2,4 @@
 
 var angular = require('angular');
 
-angular.module('giftsApp').service('SocketService', require('./SocketService'));
+angular.module('giftsApp').factory('SocketService', require('./SocketService'));
