@@ -1,7 +1,7 @@
 var assert = require('assert');
 var io = require('socket.io-client');
 
-var server = require('../server');
+var server = require('./index');
 
 var port = process.env.PORT || 8000;
 
@@ -29,24 +29,11 @@ describe('Chat Server', function() {
 
       client2.on('connect', () => {
         client2.on('connections', function(connections) {
-          console.log('client2 connections', connections);
           assert.equal(connections, 2);
           client1.disconnect();
           client2.disconnect();
           done();
         });
-      });
-    });
-  });
-
-  it('Broadcasts lists', function(done) {
-    var client3 = io.connect(socketURL, options);
-    client3.on('connect', () => {
-      client3.on('lists', data => {
-        console.log('client3 received lists', data);
-        assert.deepEqual(data, []);
-        client3.disconnect();
-        done();
       });
     });
   });
@@ -59,14 +46,12 @@ describe('Chat Server', function() {
     client4.on('connect', () => {
       client4.emit('createList', testList);
       client4.on('lists', data => {
-        console.log('client4 received lists', data);
         assert.deepEqual(data, []);
         client4.disconnect();
 
         var client5 = io.connect(socketURL, options);
         client5.on('connect', () => {
           client5.on('lists', data => {
-            console.log('client5 received lists', data);
             assert.deepEqual(data, expectedResponse);
             client5.disconnect();
             done();

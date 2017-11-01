@@ -7,3 +7,4 @@ angular.module('giftsApp', []);
 
 require('./services');
 require('./controllers');
+require('./components');

@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha -R spec --exit",
+    "test": "mocha **/*.spec.js -R spec --exit",
     "bundle": "webpack"
   },
   "dependencies": {
