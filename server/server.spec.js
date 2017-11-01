@@ -1,7 +1,7 @@
 var assert = require('assert');
 var io = require('socket.io-client');
 
-var server = require('../server');
+var server = require('./index');
 
 var port = process.env.PORT || 8000;
 
