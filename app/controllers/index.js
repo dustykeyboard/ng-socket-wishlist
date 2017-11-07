@@ -17,3 +17,11 @@ angular
     'SocketService',
     require('./ListsController')
   ]);
+
+angular
+  .module('giftsApp')
+  .controller('ItemsController', [
+    '$scope',
+    'SocketService',
+    require('./ItemsController')
+  ]);
